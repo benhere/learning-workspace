@@ -1,0 +1,39 @@
+**********************Regular Expression session-1***************************
+
+// RegularExpresions Part-1 || Introduction (58:18)
+
+If we want to represent a group of strings according to a particular pattern then
+we should go for Regular Expression.
+Ex - We can write Reg Ex to represent all valid mobile numbers, emails etc
+
+Applications of Regular Expressions :--
+1). To design validation(form) frameworks
+2). To implement Pattern matching applications (ctrl+f)
+3). To develope translators like Assemblers, Compilers, Interpreters etc
+4). To design digital circuits
+5). To develope communication protocols like TCP/IP, UDP, HTTPS etc
+
+# Pattern : - A Pattern's object represent a compiled version of Regular Expression,
+that is a JAVA equivalent object of Pattern. We can create a Pattern's object by using compile() method
+of Pattern class.
+
+Syntax - public static Pattern compile(String re){}
+
+Example - Pattern p = Pattern.compile("ab");
+
+# Matcher - We can use Matcher's object to check the given pattern in the target string. We can create
+a Matcher's object by using matcher() method of Pattern class.
+
+Syntax - public Matcher matcher(String target){}
+
+Example -  Matcher m = pt.matcher("abbabbba"); //where pt is a Pattern's object
+
+# Important methods of Matcher class :-
+1). boolean find() - It attempts to find the next match and returns true if it is available
+2). int start() - it returns start index of the match.
+3). int end() - it returns end index + 1 of the match.
+4). String group() - it returns the matched pattern.
+
+# Note - Pattern and Matcher classes are avialable in "java.util.regex" and introduced in
+ Java 1.4 version.
+

@@ -1,0 +1,238 @@
+{
+	"info": {
+		"_postman_id": "d2ba010e-f576-46ea-9888-a5b6dc00001f",
+		"name": "Gorest_APIs_APIChaining",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19928819"
+	},
+	"item": [
+		{
+			"name": "CreateUser_Gorest",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"var randomString = Math.random().toString(29).substring(3);\r",
+							"\r",
+							"var userEmail = \"sid\"+randomString +\"@gamil.com\";\r",
+							"var userName = \"sid\"+randomString;\r",
+							"\r",
+							"// make above variables as env variable so that it can be accessible throughout the entire collection\r",
+							"\r",
+							"pm.environment.set(\"email_env\", userEmail);\r",
+							"pm.environment.set(\"username_env\", userName);"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var JSONData = JSON.parse(responseBody);\r",
+							"pm.environment.set(\"userid_env\" ,JSONData.id);\r",
+							"\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\":\"{{username_env}}\", \r\n  \"gender\":\"male\", \r\n  \"email\":\"{{email_env}}\", \r\n  \"status\":\"active\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://gorest.co.in/public/v2/users",
+					"protocol": "https",
+					"host": [
+						"gorest",
+						"co",
+						"in"
+					],
+					"path": [
+						"public",
+						"v2",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetUser_Gorest",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Validating JSON fields in the response\r",
+							"\r",
+							"pm.test(\"Values of JSON fields\", () => {\r",
+							"    var jsonData = pm.response.json();\r",
+							"\r",
+							"    var getId = pm.environment.get(\"userid_env\")\r",
+							"    pm.expect((jsonData.id).to.eql(getId));\r",
+							"\r",
+							"    var getEmail = pm.environment.get(\"email_env\");\r",
+							"    pm.expect((jsonData.email).to.eql(getEmail));\r",
+							"\r",
+							"    var getName = pm.environment.get(\"username_env\");\r",
+							"    pm.expect((jsonData.name).to.eql(getName));\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://gorest.co.in/public/v2/users/{{userid_env}}",
+					"protocol": "https",
+					"host": [
+						"gorest",
+						"co",
+						"in"
+					],
+					"path": [
+						"public",
+						"v2",
+						"users",
+						"{{userid_env}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateUser_Gorest",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"var randomString = Math.random().toString(29).substring(3);\r",
+							"\r",
+							"var userEmail = \"sid\"+randomString +\"@gamil.com\";\r",
+							"var userName = \"sid\"+randomString;\r",
+							"\r",
+							"// make above variables as env variable so that it can be accessible throughout the entire collection\r",
+							"\r",
+							"pm.environment.set(\"email_env\", userEmail);\r",
+							"pm.environment.set(\"username_env\", userName);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\":\"{{username_env}}\", \r\n  \"email\":\"{{email_env}}\", \r\n  \"status\":\"inactive\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://gorest.co.in/public/v2/users/{{userid_env}}",
+					"protocol": "https",
+					"host": [
+						"gorest",
+						"co",
+						"in"
+					],
+					"path": [
+						"public",
+						"v2",
+						"users",
+						"{{userid_env}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteUser_Gorest",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.environment.unset(\"userid_env\");\r",
+							"pm.environment.unset(\"email_env\");\r",
+							"pm.environment.unset(\"username_env\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://gorest.co.in/public/v2/users/{{userid_env}}",
+					"protocol": "https",
+					"host": [
+						"gorest",
+						"co",
+						"in"
+					],
+					"path": [
+						"public",
+						"v2",
+						"users",
+						"{{userid_env}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "d9f8ee3667c66e4731c5e9eabe418904b1f5fde52fe8fdbed03191025bd82ff6",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

@@ -1,0 +1,72 @@
+{
+	"info": {
+		"_postman_id": "640ee925-26dd-4624-a233-07e864c2a3dc",
+		"name": "FileUpload_RestAPIs",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19928819"
+	},
+	"item": [
+		{
+			"name": "SingleFileUpload",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/C:/Users/NARMISHR/Desktop/Miscellaneous files/DummyFile1.txt"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/uploadFile",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"uploadFile"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "MultipleFileUpload",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "files",
+							"type": "file",
+							"src": [
+								"/C:/Users/NARMISHR/Desktop/Miscellaneous files/#AWS_CCP_Course.png",
+								"/C:/Users/NARMISHR/Desktop/Miscellaneous files/#AWS_CCP_Course_Syllabus.png",
+								"/C:/Users/NARMISHR/Desktop/Miscellaneous files/#AWS_CCP_ExamOverview.png"
+							]
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/uploadMultipleFiles",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"uploadMultipleFiles"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -1,0 +1,134 @@
+{
+	"info": {
+		"_postman_id": "51edb4ea-f194-455e-a7b9-3f05f290a945",
+		"name": "SchemaValidation",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19928819"
+	},
+	"item": [
+		{
+			"name": "JSONSchemaValidation",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var schema = {\r",
+							"    \"$schema\": \"http://json-schema.org/draft-06/schema#\",\r",
+							"    \"$ref\": \"#/definitions/Welcome9\",\r",
+							"    \"definitions\": {\r",
+							"        \"Welcome9\": {\r",
+							"            \"type\": \"object\",\r",
+							"            \"additionalProperties\": false,\r",
+							"            \"properties\": {\r",
+							"                \"booksData\": {\r",
+							"                    \"type\": \"array\",\r",
+							"                    \"items\": {\r",
+							"                        \"$ref\": \"#/definitions/BooksDatum\"\r",
+							"                    }\r",
+							"                }\r",
+							"            },\r",
+							"            \"required\": [\r",
+							"                \"booksData\"\r",
+							"            ],\r",
+							"            \"title\": \"Welcome9\"\r",
+							"        },\r",
+							"        \"BooksDatum\": {\r",
+							"            \"type\": \"object\",\r",
+							"            \"additionalProperties\": false,\r",
+							"            \"properties\": {\r",
+							"                \"author\": {\r",
+							"                    \"type\": \"string\"\r",
+							"                },\r",
+							"                \"category\": {\r",
+							"                    \"type\": \"string\"\r",
+							"                },\r",
+							"                \"price\": {\r",
+							"                    \"type\": \"string\"\r",
+							"                },\r",
+							"                \"title\": {\r",
+							"                    \"type\": \"string\"\r",
+							"                }\r",
+							"            },\r",
+							"            \"required\": [\r",
+							"                \"author\",\r",
+							"                \"category\",\r",
+							"                \"price\",\r",
+							"                \"title\"\r",
+							"            ],\r",
+							"            \"title\": \"BooksDatum\"\r",
+							"        }\r",
+							"    }\r",
+							"}\r",
+							"\r",
+							"const jsonData = pm.response.json();\r",
+							"\r",
+							"pm.test('Check Schema is valid for response', function (){\r",
+							"    pm.expect(tv4.validate(jsonData,schema)).to.be.true;\r",
+							"})\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/store",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"store"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "XMLSchemaValidation",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://restapi.adequateshop.com/api/Traveler",
+					"protocol": "http",
+					"host": [
+						"restapi",
+						"adequateshop",
+						"com"
+					],
+					"path": [
+						"api",
+						"Traveler"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

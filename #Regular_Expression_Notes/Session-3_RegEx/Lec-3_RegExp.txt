@@ -1,0 +1,71 @@
+0-*********************** RegularExpresions Part-3 || pattern class (1:08:57) ***************
+
+# Pattern class split() method :-
+=> To split(divide) the given string according to particular pattern, we should use split() method.
+
+=> Pattern p = Pattern.compile("\\s");
+=>  String[] arr = p.split("Java is best");
+=> for(String st : arr){
+      sop(st);
+   }
+
+# We can use Pattern's class split() method to split the target string according to a particular pattern.
+
+# \\.  -> represent . (dot) in Regular Expression.
+
+# [.] -> represent . (dot) in Regular Expression.
+
+#  String's class split() method :-
+=> String class also contains split() method to split the target string according to a particular pattern.
+
+# Note - Pattern's class split() method can take target string as argument whereas 
+String's class split() method class can take Pattern as argument.
+
+# StringTokenizer :-
+=> It is a specially designed class for tokenization activity.
+=> StringTokenizer class present in java.util package.
+
+# Note - The default Regular Expression for StringTokenizer's object is space character.
+
+# delimiter ---> means separator
+
+Question :- Write a Regular Expression for all valid 10 digit mobile numbers
+=> Rule - Every number should contain exactly 10 digits
+=> the first digit should be 7/8/9
+
+# If first digit of mobile no is either 7/8/9, then we can represent it with [789]
+
+=> so, the required Regular Expression is :- [6789][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]
+
+# short representation of above expression :- [6-9][0-9]{9} 
+
+# 10 digits/11 digits Mobile Number expression :-
+=> 0?[6-9][0-9]{9}
+
+# 11 digits / 12 digits Mobile number along with code +91 :-
+=> (0|91)?[6-9][0-9]{9}
+
+Q.  Write a Reular Expression to represent all valid mail ids
+=> Rule - 1). the first character of email id is always Alphanumeric which means [a-zA-Z0-9]
+          2). from second character onward the expression can be alphanumeric along with  _(underscore) and '.'(dot) any number of times which means [a-zA-Z0-9_.]*
+          3). @
+          4). Domain name and which means [a-zA-Z0-9]+
+          5). ([.][a-zA-Z]+)+
+
+Note - from second character onward only '.'(dot) and underscore(_) special characters are allowed in valid mail ids
+
+# So, the Regular Expression to reresent valid mail ids is :-
+ => [a-zA-Z0-9][a-zA-Z0-9_.]*@[a-zA-Z0-9]+([.][a-zA-Z]+)+
+
+# Regular Expression for only gmail ids :-
+=> [a-zA-Z0-9][a-zA-Z0-9_.]*@gmail[.]com
+
+Q. Write a Regular Expression for Yava language Identifiers?
+# Rule - 1). Allowed characters are (a to z), (A to Z) , (0 to 9), #, $
+         2). Length of each identifiers should be atleast 2
+         3). The first character should be Lower case alphabet symbol from a to k
+         4). second character should be a digit divisible by 3 (0,3,6,9)
+
+# So, Required Regular Expression for above example :-
+=> [a-k][0369][a-zA-Z0-9#$]*
+

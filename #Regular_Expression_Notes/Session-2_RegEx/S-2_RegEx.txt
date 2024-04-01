@@ -1,0 +1,48 @@
+************************  Regular Expression session-2  *********************
+
+// RegularExpresions Part-2 || character matching (1:00:26)
+
+# If we want to search pattern like either 'a', 'b' or 'c' then we can use [abc] in Pattern.compile() method
+like Pattern.compile("[abc]")
+
+# where [abc] represent either 'a' or 'b' or 'c'.
+
+^ --> symbol in Regular Expression signify negation.
+
+[abc] represent either 'a' or 'b' or 'c
+[^abc] ---> means except 'a', 'b' and 'c'
+[a-z] ---> lower case alphabets from a to z
+[A-Z] ---> uppercase alphabets from A to Z
+[a-zA-z] --> Any alphabets 
+[0-9] --> any digits from 0 to 9
+[0-9a-zA-Z] --> any alphanumeric symbol.
+[^0-9a-zA-Z] ---> except alphanumeric characters,s that is special symbols characters like (@,#,$,&)
+
+# All above expressions are considered as Character classes.
+
+
+1). /s - backslash 's' represent "space"
+2). /S - except space any character
+3). /d - any digit from 0 to 9
+4). /D - except digit(0 to 9), any character
+5). /w - any word character(here word means any alpha numeric character) --> [0-9a-zA-Z]
+6). /W - except word character, which means special character(!,@,#,$,%,^,&,*)
+7). .(dot) - any character
+
+# All above expressions are called Pre-defined Character classes.
+
+# Quantifiers :- mean quantity(how much, how many) . Quantifiers are used to represent number odf occurrences.
+
+# We can use Quantifiers to specify no. of occurrences to match.
+
+1). a --> exactly one 'a'
+2). a+ --> atleast one 'a' (either one 'a' or more than one 'a')
+3). a* --> any number of 'a' including zero number
+4). a? --> atmost one 'a' (either one 'a' or less than one 'a')
+
+# All above expressions are called Quantifiers. 
+
+# Note - In Reg Exp, (n+1)th index is also taken into consideration in matcher input string (where n is length of string)
+
+
+

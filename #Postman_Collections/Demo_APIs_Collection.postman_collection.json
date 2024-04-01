@@ -1,0 +1,211 @@
+{
+	"info": {
+		"_postman_id": "17934453-b55c-45a5-ae54-841f0fe35c4e",
+		"name": "Demo_APIs_Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19928819"
+	},
+	"item": [
+		{
+			"name": "Get Employees",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", () => {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Successful Get request\", () => {\r",
+							"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Content-Type header is present\", () => {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Content-Type header is application/json\", () => {\r",
+							"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json; charset=utf-8');\r",
+							"});\r",
+							"\r",
+							"// Test for particular cookies\r",
+							"pm.test(\"Cookie language has value 1\", () => {\r",
+							"    pm.expect(pm.cookies.get('language')).to.eql('en-gb');\r",
+							"});\r",
+							"\r",
+							"// Test for response time\r",
+							"pm.test(\"Response time is less than 200ms\", () => {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+							"})\r",
+							"\r",
+							"// Test the type of any part of the responses:\r",
+							"const jsonData = pm.response.json();\r",
+							"pm.test(\"Test data type of the response\", () => {\r",
+							"    pm.expect(jsonData).to.be.an(\"object\");\r",
+							"    pm.expect(jsonData.name).to.be.a(\"string\");\r",
+							"    pm.expect(jsonData.id).to.be.a(\"number\");\r",
+							"    pm.expect(jsonData.courses).to.be.an(\"array\");\r",
+							"});\r",
+							"\r",
+							"// Test if an array is empty or not\r",
+							"pm.test(\"Test array properties\", () => {\r",
+							"    pm.expect(jsonData.courses).to.include(\"Java\");\r",
+							"    pm.expect(jsonData.courses).to.have.members([\"Java\", \"Javascript\"]);\r",
+							"});\r",
+							"\r",
+							"// Validating JSON fields in Response\r",
+							"pm.test(\"value of location field is India\", () => {\r",
+							"    var jsonData1 = pm.response.json();\r",
+							"    pm.expect(jsonData1.id).to.eql(1);\r",
+							"    pm.expect(jsonData1.name).to.eql(\"John\");\r",
+							"    pm.expect(jsonData1.location).to.eql(\"India\");\r",
+							"    pm.expect(jsonData1.courses[0]).to.eql(\"Java\");\r",
+							"    pm.expect(jsonData1.courses[1]).to.eql(\"Javascript\");\r",
+							"})\r",
+							"\r",
+							"var schema = {\r",
+							"  \"$schema\": \"http://json-schema.org/draft-04/schema#\",\r",
+							"  \"type\": \"object\",\r",
+							"  \"properties\": {\r",
+							"    \"id\": {\r",
+							"      \"type\": \"integer\"\r",
+							"    },\r",
+							"    \"name\": {\r",
+							"      \"type\": \"string\"\r",
+							"    },\r",
+							"    \"location\": {\r",
+							"      \"type\": \"string\"\r",
+							"    },\r",
+							"    \"phone\": {\r",
+							"      \"type\": \"string\"\r",
+							"    },\r",
+							"    \"courses\": {\r",
+							"      \"type\": \"array\",\r",
+							"      \"items\": [\r",
+							"        {\r",
+							"          \"type\": \"string\"\r",
+							"        },\r",
+							"        {\r",
+							"          \"type\": \"string\"\r",
+							"        }\r",
+							"      ]\r",
+							"    }\r",
+							"  },\r",
+							"  \"required\": [\r",
+							"    \"id\",\r",
+							"    \"name\",\r",
+							"    \"location\",\r",
+							"    \"phone\",\r",
+							"    \"courses\"\r",
+							"  ]\r",
+							"}\r",
+							"\r",
+							"// JSON schema validation\r",
+							"pm.test('Schema is valid', () => {\r",
+							"    pm.expect(tv4.validate(jsonData, schema)).to.be.true;\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/item/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"item",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get_Single_Emp",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/item/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"item",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create_new_Emp_data",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 5,\r\n    \"name\": \"Harish\",\r\n    \"location\": \"India\",\r\n    \"phone\": \"971472489\",\r\n    \"courses\": [\r\n      \"C++\",\r\n      \"Full Stack Web Devlopment\"\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/item",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"item"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update_Emp_data",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 6,\r\n    \"name\": \"Dexter\",\r\n    \"location\": \"Newyork\",\r\n    \"phone\": \"2274142469\",\r\n    \"courses\": [\r\n      \"Django\",\r\n      \"Rest API\"\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/item/6",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"item",
+						"6"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

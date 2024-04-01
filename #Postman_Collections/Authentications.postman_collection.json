@@ -1,0 +1,451 @@
+{
+	"info": {
+		"_postman_id": "d4e5ca42-738e-4178-b9f5-b014e17146ae",
+		"name": "Authentications",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19928819"
+	},
+	"item": [
+		{
+			"name": "OAuth2.0_GithubApp",
+			"item": [
+				{
+					"name": "Step-1 :- OAuthDemo_GithubAPI",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://github.com/login/oauth/authorize?client_id=e6d148d2d0cc59c75b26",
+							"protocol": "https",
+							"host": [
+								"github",
+								"com"
+							],
+							"path": [
+								"login",
+								"oauth",
+								"authorize"
+							],
+							"query": [
+								{
+									"key": "client_id",
+									"value": "e6d148d2d0cc59c75b26"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Step2:- User_are_Redirected_back",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "https://github.com/login/oauth/access_token?client_id=e6d148d2d0cc59c75b26&client_secret=8f321ec48b6d8a900f41dd2d7badc179b1b4a8be&code=8e40824e31b69dd7a222",
+							"protocol": "https",
+							"host": [
+								"github",
+								"com"
+							],
+							"path": [
+								"login",
+								"oauth",
+								"access_token"
+							],
+							"query": [
+								{
+									"key": "client_id",
+									"value": "e6d148d2d0cc59c75b26"
+								},
+								{
+									"key": "client_secret",
+									"value": "8f321ec48b6d8a900f41dd2d7badc179b1b4a8be"
+								},
+								{
+									"key": "code",
+									"value": "8e40824e31b69dd7a222"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Step3:-Use_the_access_token",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "tokenType",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.github.com/users/mojombo",
+							"protocol": "https",
+							"host": [
+								"api",
+								"github",
+								"com"
+							],
+							"path": [
+								"users",
+								"mojombo"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "use_access_token_for_all_users",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "tokenType",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.github.com/users",
+							"protocol": "https",
+							"host": [
+								"api",
+								"github",
+								"com"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "BasicAuthentication",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "password",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "postman",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://postman-echo.com/basic-auth",
+					"protocol": "https",
+					"host": [
+						"postman-echo",
+						"com"
+					],
+					"path": [
+						"basic-auth"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "BasicAuth",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "admin",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://the-internet.herokuapp.com/basic_auth",
+					"protocol": "https",
+					"host": [
+						"the-internet",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"basic_auth"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DigestAuth",
+			"request": {
+				"auth": {
+					"type": "digest",
+					"digest": [
+						{
+							"key": "password",
+							"value": "password",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "postman",
+							"type": "string"
+						},
+						{
+							"key": "algorithm",
+							"value": "MD5",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://postman-echo.com/digest-auth",
+					"protocol": "https",
+					"host": [
+						"postman-echo",
+						"com"
+					],
+					"path": [
+						"digest-auth"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "BearerTokenAuth_Github",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "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",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.github.com/user/repos",
+					"protocol": "https",
+					"host": [
+						"api",
+						"github",
+						"com"
+					],
+					"path": [
+						"user",
+						"repos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "APIKey_Authetication",
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "fe9c5cddb7e01d747b4611c3fc9eaf2c",
+							"type": "string"
+						},
+						{
+							"key": "in",
+							"value": "query",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "appid",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://api.openweathermap.org/geo/1.0/reverse?lat=51.5098&lon=-0.1180&limit=5&appid=fe9c5cddb7e01d747b4611c3fc9eaf2c",
+					"protocol": "http",
+					"host": [
+						"api",
+						"openweathermap",
+						"org"
+					],
+					"path": [
+						"geo",
+						"1.0",
+						"reverse"
+					],
+					"query": [
+						{
+							"key": "lat",
+							"value": "51.5098"
+						},
+						{
+							"key": "lon",
+							"value": "-0.1180"
+						},
+						{
+							"key": "limit",
+							"value": "5"
+						},
+						{
+							"key": "appid",
+							"value": "fe9c5cddb7e01d747b4611c3fc9eaf2c"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "APIKey_Auth2",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://api.openweathermap.org/geo/1.0/zip?zip=E14,GB&appid=fe9c5cddb7e01d747b4611c3fc9eaf2c",
+					"protocol": "http",
+					"host": [
+						"api",
+						"openweathermap",
+						"org"
+					],
+					"path": [
+						"geo",
+						"1.0",
+						"zip"
+					],
+					"query": [
+						{
+							"key": "zip",
+							"value": "E14,GB"
+						},
+						{
+							"key": "appid",
+							"value": "fe9c5cddb7e01d747b4611c3fc9eaf2c"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "APIKey_Auth3",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://api.openweathermap.org/geo/1.0/direct?q=Delhi&limit=5&appid=fe9c5cddb7e01d747b4611c3fc9eaf2c",
+					"protocol": "http",
+					"host": [
+						"api",
+						"openweathermap",
+						"org"
+					],
+					"path": [
+						"geo",
+						"1.0",
+						"direct"
+					],
+					"query": [
+						{
+							"key": "q",
+							"value": "Delhi"
+						},
+						{
+							"key": "limit",
+							"value": "5"
+						},
+						{
+							"key": "appid",
+							"value": "fe9c5cddb7e01d747b4611c3fc9eaf2c"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "APIKey_Auth4",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "api.openweathermap.org/data/2.5/forecast/daily?q=Mumbai&cnt=7&appid=fe9c5cddb7e01d747b4611c3fc9eaf2c",
+					"host": [
+						"api",
+						"openweathermap",
+						"org"
+					],
+					"path": [
+						"data",
+						"2.5",
+						"forecast",
+						"daily"
+					],
+					"query": [
+						{
+							"key": "q",
+							"value": "Mumbai"
+						},
+						{
+							"key": "cnt",
+							"value": "7"
+						},
+						{
+							"key": "appid",
+							"value": "fe9c5cddb7e01d747b4611c3fc9eaf2c"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

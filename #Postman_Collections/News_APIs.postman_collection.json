@@ -1,0 +1,52 @@
+{
+	"info": {
+		"_postman_id": "fea7487e-b70e-4e9d-916f-1e790f8bebaf",
+		"name": "News_APIs",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19928819"
+	},
+	"item": [
+		{
+			"name": "GetNews",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://newsapi.org/v2/top-headlines?country=in&category=sports&apiKey=2e053c4d42fa409ea7399329def6bcf9&page=2&pageSize=70",
+					"protocol": "https",
+					"host": [
+						"newsapi",
+						"org"
+					],
+					"path": [
+						"v2",
+						"top-headlines"
+					],
+					"query": [
+						{
+							"key": "country",
+							"value": "in"
+						},
+						{
+							"key": "category",
+							"value": "sports"
+						},
+						{
+							"key": "apiKey",
+							"value": "2e053c4d42fa409ea7399329def6bcf9"
+						},
+						{
+							"key": "page",
+							"value": "2"
+						},
+						{
+							"key": "pageSize",
+							"value": "70"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
